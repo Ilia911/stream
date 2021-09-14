@@ -60,7 +60,13 @@ public class Task7 {
      */
     public static long calcSumOfCanceledTransOnNonEmptyAccounts(List<Account> accounts) {
         //TODO Write your code here
-        return 0;
+
+        return accounts.stream()
+                .filter((account -> account.getBalance() > 0))
+                .flatMap(account -> account.getTransactions().stream())
+                .filter(transaction -> transaction.getState().equals(State.CANCELED))
+                .mapToLong(Transaction::getSum)
+                .sum();
     }
 }
 
@@ -104,3 +110,4 @@ enum State {
     CANCELED,
     FINISHED
 }
+

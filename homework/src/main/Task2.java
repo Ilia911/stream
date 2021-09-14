@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -18,6 +19,11 @@ public class Task2 {
 
     public static Stream<String> createBadWordsDetectingStream(String text, List<String> badWords) {
         //TODO Write your code here
-        return null;
+
+        return Arrays.stream(text.split(" "))
+                .filter(badWords::contains)
+                .distinct()
+                .sorted()
+                .peek(System.out::println);
     }
 }

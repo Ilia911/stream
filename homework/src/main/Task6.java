@@ -51,7 +51,12 @@ public class Task6 {
 
     public static long calcNumberOfEmployees(List<Department> departments, long threshold) {
         //TODO Write your code here
-        return 0;
+
+        return departments.stream()
+                .filter((department -> department.getCode().equals("111-")))
+                .flatMap(department -> department.getEmployees().stream())
+                .filter(employee -> employee.getSalary() >= threshold)
+                .count();
     }
 }
 

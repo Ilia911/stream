@@ -1,5 +1,8 @@
 package main;
 
+import java.util.Optional;
+import java.util.stream.Stream;
+
 /**
  * Write a method using Stream API to check the input number is prime or not.
  * Let's agree that input value is always greater than 1 (i.e. 2, 3, 4, 5, ....).
@@ -27,7 +30,6 @@ package main;
  * False
  */
 public class Task1 {
-
     /**
      * Checking if a number is prime
      *
@@ -36,6 +38,9 @@ public class Task1 {
      */
     public static boolean isPrime(final long number) {
         //TODO Write your code here
-        return false;
+
+        final Optional<Long> first = Stream.iterate(number - 1, n -> --n).filter(n -> number % n == 0).findFirst();
+
+        return first.get() == 1;
     }
 }

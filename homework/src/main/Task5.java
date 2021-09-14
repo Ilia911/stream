@@ -1,5 +1,7 @@
 package main;
 
+import java.util.stream.LongStream;
+
 /**
  * Write a method for calculating the sum of
  * odd numbers in the given interval (inclusively) using Stream API.
@@ -36,6 +38,9 @@ public class Task5 {
      */
     public static long sumOfOddNumbersInRange(long start, long end) {
         //TODO Write your code here
-        return 0;
+
+        return LongStream.rangeClosed(start, end)
+                .filter((n) -> n % 2 > 0)
+                .reduce(0, Long::sum);
     }
 }

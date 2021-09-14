@@ -1,6 +1,8 @@
 package main;
 
+import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * You have two IntStream. The first stream contains even numbers and the second stream contains odd numbers.
@@ -25,7 +27,12 @@ import java.util.stream.IntStream;
 public class Task3 {
 
     public static IntStream createFilteringStream(IntStream evenStream, IntStream oddStream) {
-        //TODO Write your code here
-        return null;
+
+        IntPredicate predicate = value -> value % 3 == 0 && value % 5 == 0;
+
+        return Stream.concat(evenStream.filter(predicate).boxed(), oddStream.filter(predicate).boxed())
+                .sorted()
+                .skip(2)
+                .mapToInt(Integer::intValue);
     }
 }

@@ -3,6 +3,7 @@ package main;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -72,7 +73,7 @@ public class Task6 {
         Arrays.stream(jsonStrings).forEach((jsonString) -> {
             try {
                 result.add(mapper.readValue(jsonString, Department.class));
-            } catch (JsonProcessingException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         });

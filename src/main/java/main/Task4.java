@@ -32,10 +32,6 @@ import java.util.stream.Stream;
  * 2
  */
 public class Task4 {
-
-    public static void main(String[] args) {
-        System.out.println(factorial(6));
-    }
     /**
      * Calculates the factorial of the given number n
      *
@@ -44,7 +40,6 @@ public class Task4 {
      */
     public static long factorial(long n) {
         //TODO Write your code here
-
 
         return LongStream.rangeClosed(1, n).reduce(1, (long number1, long number2) -> number1 * number2);
     }

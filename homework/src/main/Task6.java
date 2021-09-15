@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -53,34 +54,28 @@ import java.util.List;
  */
 public class Task6 {
 
-    public static void main(String[] args) throws JsonProcessingException {
-        System.out.println(calcNumberOfEmployees(hardcoreInputData(), 20000L));
-    }
-
     public static long calcNumberOfEmployees(List<Department> departments, long threshold) {
         //TODO Write your code here
 
-        return departments.stream().peek(System.out::println)
-                .filter((department -> department.getCode().contains("111-"))).peek(System.out::println)
-                .flatMap(department -> department.getEmployees().stream()).peek(System.out::print)
-                .filter(employee -> employee.getSalary() >= threshold).peek(System.out::println)
+        return departments.stream()
+                .filter((department -> department.getCode().contains("111-")))
+                .flatMap(department -> department.getEmployees().stream())
+                .filter(employee -> employee.getSalary() >= threshold)
                 .count();
     }
 
-    public static List<Department> hardcoreInputData() throws JsonProcessingException {
-
-        final String jsonString1 = "{ \"name\": \"dep-1\", \"code\": \"111-1\", \"employees\": [ { \"name\": " +
-                "\"William\", \"salary\": 20000 }, { \"name\": \"Sophia\", \"salary\": 10000 } ] }";
-
-        final String jsonString2 = "{ \"name\": \"dep-2\", \"code\": \"222-1\", \"employees\": " +
-                "[ { \"name\": \"John\", \"salary\": 50000 } ] }";
+    public static List<Department> hardcoreInputData(String... jsonStrings) throws JsonProcessingException {
 
         final List<Department> result = new ArrayList<>();
-
         final ObjectMapper mapper = new ObjectMapper();
 
-        result.add(mapper.readValue(jsonString1, Department.class));
-        result.add(mapper.readValue(jsonString2, Department.class));
+        Arrays.stream(jsonStrings).forEach((jsonString) -> {
+            try {
+                result.add(mapper.readValue(jsonString, Department.class));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        });
 
         return result;
     }

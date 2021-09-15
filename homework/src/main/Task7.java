@@ -1,5 +1,11 @@
 package main;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -68,15 +74,42 @@ public class Task7 {
                 .mapToLong(Transaction::getSum)
                 .sum();
     }
+
+    public static List<Account> hardcoreInputData(String... jsonStrings) {
+        final List<Account> result = new ArrayList<>();
+        final ObjectMapper mapper = new ObjectMapper();
+
+        Arrays.stream(jsonStrings).forEach((jsonString) -> {
+            try {
+                result.add(mapper.readValue(jsonString, Account.class));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        });
+
+        return result;
+    }
+
 }
 
 class Transaction {
+    String uuid;
     State state;
     Long sum;
+    Date created;
 
-    public Transaction(State state, Long sum) {
+    public Transaction() {
+    }
+
+    public Transaction(String uuid, State state, Long sum, Date created) {
+        this.uuid = uuid;
         this.state = state;
         this.sum = sum;
+        this.created = created;
+    }
+
+    public String getUuid() {
+        return uuid;
     }
 
     public State getState() {
@@ -86,13 +119,22 @@ class Transaction {
     public Long getSum() {
         return sum;
     }
+
+    public Date getCreated() {
+        return created;
+    }
 }
 
 class Account {
+    String number;
     Long balance;
     List<Transaction> transactions;
 
-    public Account(Long balance, List<Transaction> transactions) {
+    public Account() {
+    }
+
+    public Account(String number, Long balance, List<Transaction> transactions) {
+        this.number = number;
         this.balance = balance;
         this.transactions = transactions;
     }
@@ -103,6 +145,10 @@ class Account {
 
     public List<Transaction> getTransactions() {
         return transactions;
+    }
+
+    public String getNumber() {
+        return number;
     }
 }
 

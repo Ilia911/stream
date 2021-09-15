@@ -89,7 +89,6 @@ public class Task7 {
 
         return result;
     }
-
 }
 
 class Transaction {

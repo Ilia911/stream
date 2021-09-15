@@ -1,13 +1,12 @@
 package main;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task2Test {
 
@@ -18,7 +17,7 @@ public class Task2Test {
         List<String> badWords = Arrays.asList("number", "is");
         final List<String> expected = badWords.stream().distinct().sorted().collect(Collectors.toList());
 
-        Assert.assertEquals(expected,
+        assertEquals(expected,
                 Task2.createBadWordsDetectingStream(text, badWords).collect(Collectors.toList()));
     }
 }

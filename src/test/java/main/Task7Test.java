@@ -1,7 +1,8 @@
 package main;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task7Test {
 
@@ -17,7 +18,7 @@ public class Task7Test {
                 "\"2016-12-12\" }, { \"uuid\": \"f8047f86-89e7-4226-8b75-74c55a4d7e31\", \"state\": " +
                 "\"CANCELED\", \"sum\": 10000, \"created\": \"2016-12-12\" } ] }";
 
-        Assert.assertEquals(expected, Task7.calcSumOfCanceledTransOnNonEmptyAccounts(
+        assertEquals(expected, Task7.calcSumOfCanceledTransOnNonEmptyAccounts(
                 (Task7.hardcoreInputData(jsonString1, jsonString2))));
     }
 }

@@ -1,8 +1,9 @@
 package main;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task6Test {
 
@@ -16,7 +17,7 @@ public class Task6Test {
         final String jsonString2 = "{ \"name\": \"dep-2\", \"code\": \"222-1\", \"employees\": " +
                 "[ { \"name\": \"John\", \"salary\": 50000 } ] }";
 
-        Assert.assertEquals(expected, Task6.calcNumberOfEmployees
+        assertEquals(expected, Task6.calcNumberOfEmployees
                 (Task6.hardcoreInputData(jsonString1, jsonString2), 20000L));
     }
 }

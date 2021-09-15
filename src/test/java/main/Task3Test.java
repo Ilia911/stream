@@ -1,13 +1,14 @@
 package main;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task3Test {
 
@@ -19,7 +20,7 @@ public class Task3Test {
 
         List<Integer> expected = Arrays.asList(45, 60);
 
-        Assert.assertEquals(expected, Task3.createFilteringStream(evenStream, oddStream).boxed().collect(Collectors.toList()));
+        assertEquals(expected, Task3.createFilteringStream(evenStream, oddStream).boxed().collect(Collectors.toList()));
 
     }
 }

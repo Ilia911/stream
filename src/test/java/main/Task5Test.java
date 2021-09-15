@@ -1,7 +1,8 @@
 package main;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task5Test {
 
@@ -11,7 +12,7 @@ public class Task5Test {
         final long end = 847;
         final long expected = 845 + 847;
 
-        Assert.assertEquals(expected, Task5.sumOfOddNumbersInRange(start, end));
+        assertEquals(expected, Task5.sumOfOddNumbersInRange(start, end));
     }
 
     @Test
@@ -20,6 +21,6 @@ public class Task5Test {
         final long end = 0;
         final long expected = 0;
 
-        Assert.assertEquals(expected, Task5.sumOfOddNumbersInRange(start, end));
+        assertEquals(expected, Task5.sumOfOddNumbersInRange(start, end));
     }
 }

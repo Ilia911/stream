@@ -40,6 +40,7 @@ public class Task4 {
     public static long factorial(long n) {
         //TODO Write your code here
 
-        return LongStream.rangeClosed(1, n).reduce(1, (long number1, long number2) -> number1 * number2);
+        return LongStream.rangeClosed(1, n)
+                .reduce(1, (long number1, long number2) -> number1 * number2);
     }
 }

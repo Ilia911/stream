@@ -60,7 +60,6 @@ import java.util.List;
  * ]
  */
 public class Task7 {
-
     /**
      * Calculates the general sum of canceled transactions for all non empty accounts in the list
      */
@@ -86,7 +85,6 @@ public class Task7 {
                 e.printStackTrace();
             }
         });
-
         return result;
     }
 }

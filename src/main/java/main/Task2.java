@@ -23,7 +23,6 @@ public class Task2 {
         return Arrays.stream(text.split(" "))
                 .filter(badWords::contains)
                 .distinct()
-                .sorted()
-                .peek(System.out::println);
+                .sorted();
     }
 }

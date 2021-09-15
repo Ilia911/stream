@@ -1,14 +1,17 @@
 package main;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Task6Test {
 
     @Test
-    public void calcNumberOfEmployees_ShouldReturnGeneralNumberOfEmployees_whenSalaryMoreThenThreshold() {
+    public void calcNumberOfEmployees_ShouldReturnGeneralNumberOfEmployees_whenSalaryMoreThenThreshold()
+            throws JsonProcessingException {
 
+        final long expected = 1;
 
-        //todo complete this method late
-        // I don't know how to create input data here.
+        Assert.assertEquals(expected, Task6.calcNumberOfEmployees(Task6.hardcoreInputData(), 20000));
     }
 }

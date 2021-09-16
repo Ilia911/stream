@@ -59,33 +59,23 @@ public class Task6 {
         //TODO Write your code here
 
         return departments.stream()
-                .filter((department -> department.getCode().contains("111-")))
+                .filter((department -> department.getCode().startsWith("111-")))
                 .flatMap(department -> department.getEmployees().stream())
                 .filter(employee -> employee.getSalary() >= threshold)
                 .count();
-    }
-
-    public static List<Department> hardcoreInputData(String... jsonStrings) throws JsonProcessingException {
-
-        final List<Department> result = new ArrayList<>();
-        final ObjectMapper mapper = new ObjectMapper();
-
-        Arrays.stream(jsonStrings).forEach((jsonString) -> {
-            try {
-                result.add(mapper.readValue(jsonString, Department.class));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        return result;
     }
 }
 
 class Department {
     private String name;
     private String code;
-    private List<Employees> employees;
+    private List<Employee> employees;
+
+    public Department(String name, String code, List<Employee> employees) {
+        this.name = name;
+        this.code = code;
+        this.employees = employees;
+    }
 
     public String getName() {
         return name;
@@ -103,18 +93,23 @@ class Department {
         this.code = code;
     }
 
-    public List<Employees> getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
-    public void setEmployees(List<Employees> employees) {
+    public void setEmployees(List<Employee> employees) {
         this.employees = employees;
     }
 }
 
-class Employees {
+class Employee {
     private String name;
     private long salary;
+
+    public Employee(String name, long salary) {
+        this.name = name;
+        this.salary = salary;
+    }
 
     public String getName() {
         return name;

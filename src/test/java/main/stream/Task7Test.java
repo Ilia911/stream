@@ -1,5 +1,6 @@
-package main;
+package main.stream;
 
+import main.stream.Task7;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

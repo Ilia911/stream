@@ -1,5 +1,6 @@
-package main;
+package main.stream;
 
+import main.stream.Task2;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

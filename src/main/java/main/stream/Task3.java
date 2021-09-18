@@ -1,4 +1,4 @@
-package main;
+package main.stream;
 
 import java.util.function.IntPredicate;
 import java.util.stream.IntStream;

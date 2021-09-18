@@ -1,4 +1,4 @@
-package main;
+package main.stream;
 
 import java.util.Optional;
 import java.util.stream.Stream;

@@ -1,5 +1,6 @@
-package main;
+package main.stream;
 
+import main.stream.Task1;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,13 +11,13 @@ public class Task1Test {
     @Test
     public void isPrime_shouldReturnTrue_whenNumberIsPrime() {
 
-        assertTrue(main.Task1.isPrime(31));
+        assertTrue(Task1.isPrime(31));
 
     }
 
     @Test
     public void isPrime_shouldReturnFalse_whenNumberIsNotPrime() {
 
-        assertFalse(main.Task1.isPrime(16));
+        assertFalse(Task1.isPrime(16));
     }
 }

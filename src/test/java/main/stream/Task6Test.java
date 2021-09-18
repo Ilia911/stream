@@ -1,5 +1,8 @@
-package main;
+package main.stream;
 
+import main.stream.Department;
+import main.stream.Employee;
+import main.stream.Task6;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

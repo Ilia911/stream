@@ -35,11 +35,7 @@ public class Main {
                 return;
             }
             while (landRover.getCurrentNumber() <= landRover.getN()) {
-                try {
                     landRover.land(land);
-                } catch (InterruptedException e) {
-                    System.out.println("Thread was interrupted");
-                }
             }
         }
     }

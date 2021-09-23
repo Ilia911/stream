@@ -11,7 +11,7 @@ public class LandRover {
         this.n = n;
     }
 
-    public void land(Runnable land) throws InterruptedException {
+    public void land(Runnable land) {
 
         synchronized (this) {
             if (currentNumber <= n && currentNumber % 3 == 0 && currentNumber % 5 != 0) {

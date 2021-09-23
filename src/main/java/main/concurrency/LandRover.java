@@ -2,70 +2,63 @@ package main.concurrency;
 
 import java.util.function.IntConsumer;
 
-public class LandRover implements Runnable {
+public class LandRover {
 
     private final int n;
-    private volatile int currentNumber = 1;
-
-    private final Runnable land = () -> System.out.print("\"land\",");
-    private final Runnable rover = () -> System.out.print("\"rover\",");
-    private final Runnable landRover = () -> System.out.print("\"landRover\",");
-    private final IntConsumer number = (number) -> System.out.print(number + ",");
+    private int currentNumber = 1;
 
     public LandRover(int n) {
         this.n = n;
     }
 
-    @Override
-    public void run() {
-        while (currentNumber <= n) {
-            if ("Thread-A".equals(Thread.currentThread().getName())) {
-                land(land);
-                Thread.yield();
-                continue;
+    public void land(Runnable land) throws InterruptedException {
+
+        synchronized (this) {
+            if (currentNumber <= n && currentNumber % 3 == 0 && currentNumber % 5 != 0) {
+                land.run();
+                currentNumber++;
             }
-            if ("Thread-B".equals(Thread.currentThread().getName())) {
-                rover(rover);
-                Thread.yield();
-                continue;
+        }
+        Thread.yield();
+    }
+
+    public void rover(Runnable rover) {
+
+        synchronized (this) {
+            if (currentNumber <= n && currentNumber % 5 == 0 && currentNumber % 3 != 0) {
+                rover.run();
+                currentNumber++;
             }
-            if ("Thread-C".equals(Thread.currentThread().getName())) {
-                landRover(landRover);
-                Thread.yield();
-                continue;
+        }
+        Thread.yield();
+    }
+
+    public void landRover(Runnable landRover) {
+
+        synchronized (this) {
+            if (currentNumber <= n && currentNumber % 3 == 0 && currentNumber % 5 == 0) {
+                landRover.run();
+                currentNumber++;
             }
-            if ("Thread-D".equals(Thread.currentThread().getName())) {
-                number(number);
-                Thread.yield();
+        }
+        Thread.yield();
+    }
+
+    public void number(IntConsumer land) {
+
+        synchronized (this) {
+            if (currentNumber <= n && currentNumber % 3 != 0 && currentNumber % 5 != 0) {
+                land.accept(currentNumber);
+                currentNumber++;
             }
         }
     }
 
-    public synchronized void land(Runnable land) {
-        if (currentNumber <= n && currentNumber % 3 == 0 && currentNumber % 5 != 0) {
-            land.run();
-            currentNumber++;
-        }
+    public int getN() {
+        return n;
     }
 
-    public synchronized void rover(Runnable rover) {
-        if (currentNumber <= n && currentNumber % 5 == 0 && currentNumber % 3 != 0) {
-            rover.run();
-            currentNumber++;
-        }
-    }
-
-    public synchronized void landRover(Runnable landRover) {
-        if (currentNumber <= n && currentNumber % 3 == 0 && currentNumber % 5 == 0) {
-            landRover.run();
-            currentNumber++;
-        }
-    }
-
-    public synchronized void number(IntConsumer land) {
-        if (currentNumber <= n && currentNumber % 3 != 0 && currentNumber % 5 != 0) {
-            land.accept(currentNumber);
-            currentNumber++;
-        }
+    public int getCurrentNumber() {
+        return currentNumber;
     }
 }

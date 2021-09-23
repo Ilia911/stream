@@ -8,13 +8,17 @@ public class LandRover {
     private int currentNumber = 1;
 
     public LandRover(int n) {
+        if (n < 1 || n > 50) {
+            System.out.println("Number must be more then 0 and less then 51");
+            System.exit(-1);
+        }
         this.n = n;
     }
 
-    public void land(Runnable land) throws InterruptedException {
+    public synchronized void land(Runnable land) throws InterruptedException {
 
-        synchronized (this) {
-            if (currentNumber <= n && currentNumber % 3 == 0 && currentNumber % 5 != 0) {
+        while(currentNumber <= n) {
+            if (currentNumber % 3 == 0 && currentNumber % 5 != 0) {
                 land.run();
                 currentNumber++;
                 this.notifyAll();
@@ -24,10 +28,10 @@ public class LandRover {
         }
     }
 
-    public void rover(Runnable rover) throws InterruptedException {
+    public synchronized void rover(Runnable rover) throws InterruptedException {
 
-        synchronized (this) {
-            if (currentNumber <= n && currentNumber % 5 == 0 && currentNumber % 3 != 0) {
+         while (currentNumber <= n) {
+            if (currentNumber % 5 == 0 && currentNumber % 3 != 0) {
                 rover.run();
                 currentNumber++;
                 this.notifyAll();
@@ -37,10 +41,10 @@ public class LandRover {
         }
     }
 
-    public void landRover(Runnable landRover) throws InterruptedException {
+    public synchronized void landRover(Runnable landRover) throws InterruptedException {
 
-        synchronized (this) {
-            if (currentNumber <= n && currentNumber % 3 == 0 && currentNumber % 5 == 0) {
+        while (currentNumber <= n) {
+            if (currentNumber % 3 == 0 && currentNumber % 5 == 0) {
                 landRover.run();
                 currentNumber++;
                 this.notifyAll();
@@ -51,10 +55,10 @@ public class LandRover {
         Thread.yield();
     }
 
-    public void number(IntConsumer land) throws InterruptedException {
+    public synchronized void number(IntConsumer land) throws InterruptedException {
 
-        synchronized (this) {
-            if (currentNumber <= n && currentNumber % 3 != 0 && currentNumber % 5 != 0) {
+        while (currentNumber <= n) {
+            if (currentNumber % 3 != 0 && currentNumber % 5 != 0) {
                 land.accept(currentNumber);
                 currentNumber++;
                 this.notifyAll();

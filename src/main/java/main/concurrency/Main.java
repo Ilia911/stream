@@ -30,16 +30,10 @@ public class Main {
 
         @Override
         public void run() {
-            if (landRover.getN() < 1 || landRover.getN() > 50) {
-                System.out.println("Number must be more then 0 and less then 51");
-                return;
-            }
-            while (landRover.getCurrentNumber() <= landRover.getN()) {
-                try {
-                    landRover.land(land);
-                } catch (InterruptedException e) {
-                    System.out.println("The thread was interrupted");
-                }
+            try {
+                landRover.land(land);
+            } catch (InterruptedException e) {
+                System.out.println("The thread was interrupted");
             }
         }
     }
@@ -56,16 +50,10 @@ public class Main {
 
         @Override
         public void run() {
-            if (landRover.getN() < 1 || landRover.getN() > 50) {
-                System.out.println("Number must be more then 0 and less then 51");
-                return;
-            }
-            while (landRover.getCurrentNumber() <= landRover.getN()) {
-                try {
-                    landRover.rover(rover);
-                } catch (InterruptedException e) {
-                    System.out.println("The thread was interrupted");
-                }
+            try {
+                landRover.rover(rover);
+            } catch (InterruptedException e) {
+                System.out.println("The thread was interrupted");
             }
         }
     }
@@ -82,16 +70,10 @@ public class Main {
 
         @Override
         public void run() {
-            if (landRover.getN() < 1 || landRover.getN() > 50) {
-                System.out.println("Number must be more then 0 and less then 51");
-                return;
-            }
-            while (landRover.getCurrentNumber() <= landRover.getN()) {
-                try {
-                    landRover.landRover(landrover);
-                } catch (InterruptedException e) {
-                    System.out.println("The thread was interrupted");
-                }
+            try {
+                landRover.landRover(landrover);
+            } catch (InterruptedException e) {
+                System.out.println("The thread was interrupted");
             }
         }
     }
@@ -108,16 +90,10 @@ public class Main {
 
         @Override
         public void run() {
-            if (landRover.getN() < 1 || landRover.getN() > 50) {
-                System.out.println("Number must be more then 0 and less then 51");
-                return;
-            }
-            while (landRover.getCurrentNumber() <= landRover.getN()) {
-                try {
-                    landRover.number(number);
-                } catch (InterruptedException e) {
-                    System.out.println("The thread was interrupted");
-                }
+            try {
+                landRover.number(number);
+            } catch (InterruptedException e) {
+                System.out.println("The thread was interrupted");
             }
         }
     }

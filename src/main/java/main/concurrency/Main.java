@@ -35,7 +35,11 @@ public class Main {
                 return;
             }
             while (landRover.getCurrentNumber() <= landRover.getN()) {
+                try {
                     landRover.land(land);
+                } catch (InterruptedException e) {
+                    System.out.println("The thread was interrupted");
+                }
             }
         }
     }
@@ -57,7 +61,11 @@ public class Main {
                 return;
             }
             while (landRover.getCurrentNumber() <= landRover.getN()) {
-                landRover.rover(rover);
+                try {
+                    landRover.rover(rover);
+                } catch (InterruptedException e) {
+                    System.out.println("The thread was interrupted");
+                }
             }
         }
     }
@@ -79,7 +87,11 @@ public class Main {
                 return;
             }
             while (landRover.getCurrentNumber() <= landRover.getN()) {
-                landRover.landRover(landrover);
+                try {
+                    landRover.landRover(landrover);
+                } catch (InterruptedException e) {
+                    System.out.println("The thread was interrupted");
+                }
             }
         }
     }
@@ -101,7 +113,11 @@ public class Main {
                 return;
             }
             while (landRover.getCurrentNumber() <= landRover.getN()) {
-                landRover.number(number);
+                try {
+                    landRover.number(number);
+                } catch (InterruptedException e) {
+                    System.out.println("The thread was interrupted");
+                }
             }
         }
     }

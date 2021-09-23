@@ -52,7 +52,6 @@ public class LandRover {
                 this.wait();
             }
         }
-        Thread.yield();
     }
 
     public synchronized void number(IntConsumer land) throws InterruptedException {
@@ -66,13 +65,5 @@ public class LandRover {
                 this.wait();
             }
         }
-    }
-
-    public int getN() {
-        return n;
-    }
-
-    public int getCurrentNumber() {
-        return currentNumber;
     }
 }

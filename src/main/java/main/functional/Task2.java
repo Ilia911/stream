@@ -3,7 +3,6 @@ package main.functional;
 
 import java.util.List;
 import java.util.function.IntPredicate;
-import java.util.function.Predicate;
 
 /**
  * Write the disjunctAll method that accepts a list of
@@ -22,8 +21,15 @@ public class Task2 {
     public static IntPredicate disjunctAll(List<IntPredicate> predicates) {
 
         //write code
-        return predicates.stream()
-                .reduce(IntPredicate::and)
-                .orElse(value -> false);
+
+        IntPredicate result = value -> {
+            for (IntPredicate predicate : predicates) {
+                if (null != predicate && predicate.test(value)) {
+                    return true;
+                }
+            } return false;
+        };
+
+        return predicates.isEmpty() ? value -> false : result;
     }
 }
